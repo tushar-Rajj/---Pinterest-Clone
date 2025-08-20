@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Required meta tags -->
+<!-- <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+<!-- Bootstrap CSS -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/profile.css"> -->
+<!-- 
+  
+  <!doctype html>
+<html lang="en">
+  <head>
+     Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css"> 
+
+	<link rel="stylesheet"  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="stylesheets/profile.css">
+
+<title>profile</title>
+</head>
+<link rel="stylesheet" href="stylesheets/Nav.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<body>
+  <div class="nav">
+    <nav>
+      <div class="logo">
+        <h5>LOGO</h5>
+          
+      </div>
+      <ul class="navLink">
+       <li><a href="/profile">Profile</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="/feed">Gallery</a></li>
+        <li><a href="/logout">LogOut</a></li>
+        
+      </ul>
+      <div class="lines">
+          <div class="l1"></div>
+          <div class="l2"></div>
+          <div class="l3"></div>
+      </div>
+    </nav>
+</div>
+
+
+<section id="cardd">
+  <div class="containerPro">
+    <form id="uploadform" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+      <input type="file" name="image">
+    </form>
+    <div class="cardPro">
+      <div class="div3">
+        <span>
+         <!-- <p>click </p> -->
+
+          <i class='bx bx-pencil'></i>
+        </span>
+        <div id="uploadIcon" class="profile-picture">
+          <img src="/images/uploads/<%= user.profileImage %>" alt="Profile Picture">
+        </div>
+      </div>
+      <h2 class="name">
+        <%= user.fullname %>
+      </h2>
+      <h3 class="username">@<%= user.username %>
+      </h3> <!-- Fix typo: user.username instead of just username -->
+      <p class="tagline">some tagline</p>
+      <p class="description">some description</p>
+      <!-- <a href="/logout" class="buttonPro">LogOut</a> -->
+      <div class="in"><form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="filecaption"> Enter Tittle:
+        <input id="tittle" type="text" name="filecaption" placeholder="Enter Titile">
+      </label><br>
+      <label for="file"> Upload File : 
+        <input type="file" name="file" id="file" placeholder="Choose one photo">
+      </label><br>
+        <button id="btnn" type="submit"> Upload</button>
+      </form>
+    </div>
+    </div>
+  </div>
+</section>
+
+  <div class="container">
+    <div class="cards flex  ">
+      <% user.posts.forEach(function(post){ %>
+        <div class="card flexx" style="width: 18rem;">
+          <!-- Assuming post.Image is the correct property to access the image URL -->
+          <img src="/images/uploads/<%= post.Image %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <!-- Assuming post.ImageText is the correct property to access the image text -->
+            <h5 class="card-title">
+              <%= post.ImageText %>
+            </h5>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+<script>
+  const upload= document.querySelector("#uploadIcon").addEventListener("click",function(){
+    document.querySelector("#uploadform input").click();
+  })
+
+
+  document.querySelector("#uploadform input").addEventListener("change",function(){
+    document.querySelector("#uploadform").submit();
+  })
+
+
+    const navSlide = () => {
+		const lines = document.querySelector('.lines');
+		const nav = document.querySelector('.navLink');
+		
+		lines.addEventListener('click',() => {
+			nav.classList.toggle('nav-active');
+			
+		//Line Animation
+		lines.classList.toggle('toggle');
+		});
+	   
+	}
+	
+	navSlide();
+
+</script>
+
+</html>
